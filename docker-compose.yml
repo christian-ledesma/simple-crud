@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql-server
+    environment:
+      MSSQL_SA_PASSWORD: F4J54kD?n8&
+      ACCEPT_EULA: Y
+    ports:
+        - 1433:1433
+    volumes:
+      - sql-server-data:/var/opt/mssql
+
+  simplecrud.api:
+    image: ${DOCKER_REGISTRY-}simplecrudapi
+    build:
+      context: .
+      dockerfile: SimpleCrud.API/Dockerfile
+    environment:
+      - ConnectionStrings__Sql-Server=Server=sql-server,1433;Database=ToDoContext;User Id=sa;Password=F4J54kD?n8&;TrustServerCertificate=True;
+
+volumes:
+  sql-server-data:

@@ -6,16 +6,16 @@ using SimpleCrud.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var sqlserver = builder.Configuration.GetConnectionString("Sql-Server");
+
 builder.Services.AddDbContext<Context>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Sql-Server"));
+    options.UseSqlServer(sqlserver);
 });
 
 builder.Services.AddScoped<IToDoRepository, ToDoRepository>();
