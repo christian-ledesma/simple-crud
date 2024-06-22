@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var sqlserver = builder.Configuration.GetConnectionString("Sql-Server");
+var sqlserver = builder.Configuration.GetConnectionString("SqlServer");
 
 builder.Services.AddDbContext<Context>(options =>
 {

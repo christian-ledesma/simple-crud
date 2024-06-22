@@ -18,7 +18,7 @@ services:
       context: .
       dockerfile: SimpleCrud.API/Dockerfile
     environment:
-      - ConnectionStrings__Sql-Server=Server=sql-server,1433;Database=ToDoContext;User Id=sa;Password=F4J54kD?n8&;TrustServerCertificate=True;
+      - ConnectionStrings__SqlServer=Server=sql-server,1433;Database=ToDoContext;User Id=sa;Password=F4J54kD?n8&;TrustServerCertificate=True;
 
 volumes:
   sql-server-data:
