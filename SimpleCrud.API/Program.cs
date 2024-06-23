@@ -27,10 +27,14 @@ builder.Services.AddMediatR(cfg =>
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+try
 {
+    using var scope = app.Services.CreateScope();
     Context context = scope.ServiceProvider.GetRequiredService<Context>();
     context.Database.EnsureCreated();
+}
+catch (Exception)
+{
 }
 
 // Configure the HTTP request pipeline.
